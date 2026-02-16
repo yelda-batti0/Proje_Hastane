@@ -136,6 +136,105 @@ The project simulates real-world hospital workflow and database-driven system de
 
 ---
 
+
+## 🗄️ Database ER Diagram
+
+```mermaid
+erDiagram
+
+TBL_HASTALAR {
+int HastaId PK
+string HastaAd
+string HastaSoyad
+string HastaTC
+string HastaTelefon
+string HastaSifre
+string HastaCinsiyet
+}
+
+TBL_DOKTORLAR {
+int DoktorId PK
+string DoktorAd
+string DoktorSoyad
+string DoktorBrans
+string DoktorTC
+string DoktorSifre
+}
+
+TBL_SEKRETERLER {
+string SekreterTC PK
+string SekreterAdSoyad
+string SekreterSifre
+}
+
+TBL_RANDEVULAR {
+int RandevuId PK
+date RandevuTarih
+string RandevuSaat
+string RandevuBrans
+string RandevuDoktor
+boolean RandevuDurum
+string HastaTC FK
+string HastaSikayet
+}
+
+TBL_HASTALAR ||--o{ TBL_RANDEVULAR : alir
+TBL_DOKTORLAR ||--o{ TBL_RANDEVULAR : bakar
+```
+
+## 🏗️ System UML Diagram
+
+```mermaid
+classDiagram
+
+class Hasta {
+HastaId
+HastaAd
+HastaSoyad
+HastaTC
+HastaTelefon
+HastaSifre
+HastaCinsiyet
+RandevuAl()
+RandevuListele()
+}
+
+class Doktor {
+DoktorId
+DoktorAd
+DoktorSoyad
+DoktorBrans
+DoktorTC
+DoktorSifre
+RandevulariGoruntule()
+}
+
+class Sekreter {
+SekreterTC
+AdSoyad
+Sifre
+RandevuOlustur()
+DoktorYonet()
+BransYonet()
+}
+
+class Randevu {
+RandevuId
+Tarih
+Saat
+Brans
+Doktor
+Durum
+Sikayet
+}
+
+Hasta --> Randevu
+Doktor --> Randevu
+Sekreter --> Randevu
+Sekreter --> Doktor
+```
+
+
 ## 👩‍💻 Developer
 
 Yelda Battı
